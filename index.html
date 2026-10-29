@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<title>شيف البيت | دليلك للطبخ العراقي والشرقي</title>
+
+<!-- PWA Manifest & Meta -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="شيف البيت">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-app: #0D0D11;
+  --bg-card: #181820;
+  --bg-subtle: #21212B;
+  --border-color: #2D2D3A;
+  --primary: #F25A24;
+  --primary-hover: #fa6c38;
+  --primary-glow: rgba(242, 90, 36, 0.35);
+  --text-main: #FFFFFF;
+  --text-muted: #9E9EA8;
+  --text-dim: #6A6A76;
+  --star-gold: #FFB800;
+  --heart-red: #FF3B30;
+  --green: #2ED573;
+  --radius-xl: 22px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: "Readex Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 98px);
+  padding-top: env(safe-area-inset-top, 0px);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Header */
+.home-header {
+  padding: 16px 18px 8px;
+  text-align: center;
+}
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  background: #FFF;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #0D0D11;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+}
+.brand-name {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #FFF;
+}
+.brand-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Search Bar */
+.search-bar-wrap {
+  position: relative;
+  margin: 14px 16px;
+}
+.search-input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  padding: 12px 46px 12px 18px;
+  color: #FFF;
+  font-size: 0.92rem;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(242, 90, 36, 0.15);
+}
+.search-input-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+
+/* Categories Horizontal Row */
+.categories-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 16px 12px;
+  scrollbar-width: none;
+}
+.categories-row::-webkit-scrollbar {
+  display: none;
+}
+.cat-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.cat-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  transition: transform 0.15s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.cat-item:active .cat-icon-box {
+  transform: scale(0.92);
+}
+.cat-label {
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Hero Feature Banner */
+.hero-banner {
+  margin: 6px 16px 20px;
+  background: linear-gradient(135deg, #1C1917 0%, #291811 100%);
+  border: 1px solid #442A1D;
+  border-radius: var(--radius-xl);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.hero-content {
+  flex: 1;
+  z-index: 2;
+}
+.hero-tagline {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFF;
+  margin-bottom: 2px;
+}
+.hero-desc {
+  font-size: 0.85rem;
+  color: #E29B76;
+  margin-bottom: 14px;
+}
+.btn-hero-action {
+  background: var(--primary);
+  color: #FFF;
+  border: 0;
+  border-radius: 24px;
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--primary-glow);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-img-wrap {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(242, 90, 36, 0.4);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+.hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+.hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+}
+.hero-dot.active {
+  width: 18px;
+  border-radius: 4px;
+  background: var(--primary);
+}
+
+/* Sections */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.section-link {
+  font-size: 0.82rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recipes-horizontal {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 0 16px 16px;
+  scrollbar-width: none;
+}
+.recipes-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+.card-recipe {
+  flex: 0 0 190px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.card-recipe:active {
+  transform: scale(0.97);
+}
+.card-recipe-img {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  display: block;
+}
+.card-recipe-body {
+  padding: 10px 12px;
+}
+.card-recipe-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+.card-recipe-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.card-recipe-rating {
+  color: var(--star-gold);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Detail Screen */
+.detail-top-bar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 20;
+}
+.detail-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(13, 13, 17, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #FFF;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.detail-icon-btn.liked {
+  color: var(--heart-red);
+}
+.detail-hero-box {
+  position: relative;
+  width: 100%;
+  height: 290px;
+}
+.detail-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.detail-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13,13,17,0.1) 0%, rgba(13,13,17,0.85) 80%, #0D0D11 100%);
+}
+.detail-main {
+  padding: 0 18px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 5;
+}
+.detail-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.detail-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+.detail-rating-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--star-gold);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.detail-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0;
+}
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 8px;
+  text-align: center;
+}
+.stat-icon {
+  font-size: 1.3rem;
+  color: var(--primary);
+  margin-bottom: 2px;
+}
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.stat-val {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+/* Switcher Tabs */
+.pills-tab-wrap {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  padding: 4px;
+  margin: 18px 0 16px;
+}
+.pill-btn {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  text-align: center;
+}
+.pill-btn.active {
+  background: var(--primary);
+  color: #FFF;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+/* Ingredients */
+.ing-list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.ing-item-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ing-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background: var(--bg-subtle);
+  transition: all 0.15s ease;
+}
+.custom-checkbox.checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.custom-checkbox.checked::after {
+  content: '✓';
+  color: #FFF;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.ing-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.ing-name.crossed {
+  text-decoration: line-through;
+  color: var(--text-dim);
+}
+.ing-icon-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+/* Assistant */
+.assistant-header {
+  text-align: center;
+  padding: 16px 20px 8px;
+}
+.chef-avatar-wrap {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFE4BA 0%, #E67E22 100%);
+  border: 3px solid var(--primary);
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  box-shadow: 0 8px 24px var(--primary-glow);
+}
+.assistant-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+.assistant-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.chat-box {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 380px;
+}
+.chat-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 88%;
+}
+.chat-msg.bot {
+  align-self: flex-start;
+}
+.chat-msg.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+.chat-bubble {
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.chat-msg.bot .chat-bubble {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: #FFF;
+  border-top-right-radius: 4px;
+}
+.chat-msg.user .chat-bubble {
+  background: var(--primary);
+  color: #FFF;
+  border-top-left-radius: 4px;
+  font-weight: 500;
+}
+
+.suggest-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+}
+.suggest-card-item {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.suggest-card-item:hover, .suggest-card-item:active {
+  border-color: var(--primary);
+  background: #2A201A;
+}
+.suggest-card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.suggest-card-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.chat-input-bar {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 82px);
+  left: 0;
+  right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  background: rgba(13, 13, 17, 0.95);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 40;
+}
+.chat-input-field {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  padding: 10px 16px;
+  color: #FFF;
+  font-size: 0.9rem;
+  outline: none;
+  font-family: inherit;
+}
+.chat-action-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #FFF;
+  border: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.chat-clip-btn {
+  background: none;
+  border: 0;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* Grid Screen */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 0 16px;
+}
+.cat-card-grid {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.cat-card-grid:active {
+  transform: scale(0.96);
+}
+.cat-card-grid img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+}
+.cat-card-grid span {
+  display: block;
+  padding: 8px 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+/* Favorites Screen */
+.fav-item-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 16px 12px;
+  cursor: pointer;
+}
+.fav-thumb {
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.fav-details {
+  flex: 1;
+}
+.fav-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.fav-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.fav-action-heart {
+  color: var(--heart-red);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Shopping List */
+.shop-recipe-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin: 0 16px 16px;
+  overflow: hidden;
+}
+.shop-recipe-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-color);
+}
+.shop-recipe-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.shop-recipe-bar-left img {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.shop-recipe-remove {
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.shop-items-container {
+  padding: 4px 14px;
+}
+.shop-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.shop-item-row:last-child {
+  border-bottom: 0;
+}
+.shop-item-row-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.shop-item-row-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* Bottom Bar Buttons */
+.sticky-bottom-action {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 78px);
+  left: 0;
+  right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgba(13,13,17,0) 0%, rgba(13,13,17,0.95) 40%, #0D0D11 100%);
+  display: flex;
+  gap: 12px;
+  z-index: 45;
+}
+.btn-primary-block {
+  flex: 1;
+  background: var(--primary);
+  color: #FFF;
+  border: 0;
+  border-radius: 30px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px var(--primary-glow);
+  font-family: inherit;
+}
+.btn-outline-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: #FFF;
+  border-radius: 30px;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+/* Nav Bar */
+nav.app-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #14141B;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 6px 8px calc(env(safe-area-inset-bottom, 0px) + 6px);
+  z-index: 50;
+}
+.nav-tab-item {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.15s ease;
+  font-family: inherit;
+}
+.nav-tab-item svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+.nav-tab-item.active {
+  color: var(--primary);
+}
+
+.nav-tab-item.center-highlight {
+  position: relative;
+  top: -16px;
+}
+.center-circle-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6F3D 0%, #E64A19 100%);
+  color: #FFF;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 20px var(--primary-glow);
+  border: 3px solid #14141B;
+  font-size: 1.6rem;
+  transition: transform 0.2s ease;
+}
+.nav-tab-item.center-highlight:active .center-circle-btn {
+  transform: scale(0.92);
+}
+
+/* Toast */
+#toast {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 90px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(33, 33, 43, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFF;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: none;
+  z-index: 120;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <main id="appContent"></main>
+</div>
+
+<div id="toast"></div>
+
+<!-- Bottom Navigation Bar -->
+<nav class="app-bottom-bar">
+  <button class="nav-tab-item active" onclick="switchTab('home')">
+    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    <span>الرئيسية</span>
+  </button>
+  
+  <button class="nav-tab-item" onclick="switchTab('search')">
+    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+    <span>البحث</span>
+  </button>
+
+  <button class="nav-tab-item center-highlight" onclick="switchTab('assistant')">
+    <div class="center-circle-btn">👨‍🍳</div>
+    <span style="margin-top:2px;">مساعد الشيف</span>
+  </button>
+
+  <button class="nav-tab-item" onclick="switchTab('favorites')">
+    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <span>المفضلة</span>
+  </button>
+
+  <button class="nav-tab-item" onclick="switchTab('shopping')">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+    <span>التسوق</span>
+  </button>
+</nav>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW error:', err));
+  });
+}
+
+const STATE = {
+  currentTab: 'home',
+  activeCategory: 'كل الأطباق',
+  recipeDetailId: null,
+  activeDetailTab: 'ingredients',
+  favorites: [0, 1, 2, 3],
+  shoppingChecked: {},
+  chatMessages: [
+    { type: 'bot', text: '👋 مرحباً!\nأنا مساعد شيف البيت بالذكاء الاصطناعي، ماذا تود أن تطبخ اليوم؟' },
+    { type: 'user', text: 'عندي دجاج وبطاطا، شنو اكدر اسوي؟' },
+    { 
+      type: 'bot', 
+      text: 'عندي لك عدة اقتراحات لذيذة من المطبخ العراقي والشرقي:',
+      cards: [
+        { name: 'دجاج بالبطاطا في الفرن', img: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=300&q=80', id: 0 },
+        { name: 'صينية دجاج بالبطاطا بالصوص', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80', id: 0 },
+        { name: 'دجاج بالبطاطا على الطريقة العراقية', img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=300&q=80', id: 0 },
+        { name: 'دجاج بالكاري والبطاطا', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80', id: 0 }
+      ]
+    }
+  ]
+};
+
+const RECIPES = [
+  {
+    id: 0,
+    name: 'مقلوبة عراقية باللحم والباذنجان',
+    category: 'أطباق عراقية',
+    rating: 4.9,
+    reviews: '2,265',
+    cookTime: '60 دقيقة',
+    prepTime: '30 دقيقة',
+    servings: '6 أشخاص',
+    heroImg: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=80',
+    ingredients: [
+      { name: 'رز طويل الحبة (عنبر أو بسمتي)', qty: '2 كوب', icon: '🍚' },
+      { name: 'لحم غنم طازج بالعظم', qty: '1 كغم', icon: '🥩' },
+      { name: 'حبة باذنجان رومي مقلية', qty: '2 حبة', icon: '🍆' },
+      { name: 'حبة بطاطا مقطعة دوائر', qty: '3 حبة', icon: '🥔' },
+      { name: 'حبة بصل كبيرة مكرملة', qty: '1 حبة كبيرة', icon: '🧅' },
+      { name: 'حبة طماطم طازجة للقاع', qty: '2 حبة', icon: '🍅' },
+      { name: 'زيت نباتي وسمن للقلي', qty: 'نصف كوب', icon: '🫒' }
+    ],
+    steps: [
+      'سلق لحم الغنم مع الهيل وورق الغار والبصل حتى ينضج تماماً، والاحتفاظ بالمرق جانباً.',
+      'قلي شرائح الباذنجان والبطاطا والبصل حتى تكتسب لوناً ذهبياً مقرمشاً.',
+      'ترتيب شرائح الطماطم أسفل القدر، ثم قطع اللحم، ثم الخضار المقلية، وسكب الأرز فوقها.',
+      'إضافة مرق اللحم المتبل بالبهارات وتركه على نار هادئة 30 دقيقة، ثم قلب القدر في صينية واسعة.'
+    ],
+    notes: 'يفضل استخدام رز العنبر العراقي لإعطاء رائحة وطعم أصيل، وترك القدر مقلوباً لمدة 5 دقائق قبل رفعه ليحافظ على شكل القالب.'
+  },
+  {
+    id: 1,
+    name: 'دولمة عراقية حامضة',
+    category: 'أطباق عراقية',
+    rating: 4.8,
+    reviews: '1,890',
+    cookTime: '90 دقيقة',
+    prepTime: '45 دقيقة',
+    servings: '8 أشخاص',
+    heroImg: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80',
+    ingredients: [
+      { name: 'سلق عراقي طازج وورق عنب', qty: '1 باقة', icon: '🥬' },
+      { name: 'لحم مفروم دهين مع لية', qty: '500 غرام', icon: '🥩' },
+      { name: 'رز مصري أو عنبر مغسول', qty: '2 كوب', icon: '🍚' },
+      { name: 'بصل للحشو مع كرفس وثوم', qty: '4 حبات', icon: '🧅' },
+      { name: 'دبس رمان طبيعي وعصير حامض', qty: 'نصف كوب', icon: '🍋' }
+    ],
+    steps: [
+      'تحضير الحشوة بخلط اللحم المفروم والأرز والبصل والكرفس ودبس الرمان والبهارات.',
+      'حشو قشور البصل وورق السلق والكوسا وترتيب ضلوع الخروف وعضود السلق في قعر القدر.',
+      'وضع ثقل على الدولمة وطبخها على نار هادئة حتى الاستواء التام وقلبها ساخنة.'
+    ],
+    notes: 'عضود السلق في أسفل القدر تحمي الدولمة من الاحتراق وتفرز نكهة حامضة لذيذة.'
+  },
+  {
+    id: 2,
+    name: 'مسكوف سمك كطان',
+    category: 'أسماك',
+    rating: 4.7,
+    reviews: '940',
+    cookTime: '45 دقيقة',
+    prepTime: '20 دقيقة',
+    servings: '4 أشخاص',
+    heroImg: 'https://images.unsplash.com/photo-1547496502-affa22d38842?auto=format&fit=crop&w=900&q=80',
+    ingredients: [
+      { name: 'سمك كطان أو كارب طازج', qty: '2.5 كغم', icon: '🐟' },
+      { name: 'معجون تمر هندي أصيل', qty: '3 ملاعق', icon: '🥣' },
+      { name: 'كاري عراقي وثوم وملح خشن', qty: 'حسب الرغبة', icon: '🧂' },
+      { name: 'طماطم وبصل وليمون للشوي', qty: '3 حبات', icon: '🍋' }
+    ],
+    steps: [
+      'شق السمكة من الظهر وتنظيفها وتمليحها بملح خشن.',
+      'تجهيز خلطة الدهن من التمر هندي والكاري والثوم ومسح بطن السمكة.',
+      'شواء السمكة على الحطب أو في الفرن حتى تتحمر وتكتسب النكهة المدخنة.'
+    ],
+    notes: 'حطب شجر النارنج يعطي السمك المسكوف أفضل رائحة دخان عراقية.'
+  },
+  {
+    id: 3,
+    name: 'كبة مقلية مقرمشة (كبة تمن)',
+    category: 'أطباق عراقية',
+    rating: 4.9,
+    reviews: '3,100',
+    cookTime: '50 دقيقة',
+    prepTime: '30 دقيقة',
+    servings: '5 أشخاص',
+    heroImg: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80',
+    ingredients: [
+      { name: 'رز عنبر مسلوق ومهروس', qty: '3 أكواب', icon: '🍚' },
+      { name: 'لحم مفروم هبر قليل الدهن', qty: '400 غرام', icon: '🥩' },
+      { name: 'بصل مفروم ناعم وكرفس', qty: '2 حبة', icon: '🧅' },
+      { name: 'بهارات كبة وكاري وكركم', qty: 'ملعقة كبيرة', icon: '🧂' }
+    ],
+    steps: [
+      'عجن الأرز المسلوق مع الكركم والملح حتى يتشكل عجين متماسك وناعم.',
+      'حمس اللحم والبصل والكرفس والبهار وتجفيفه تماماً من السوائل.',
+      'تشكيل أقراص الكبة وقليها في زيت غزير ساخن حتى تصبح ذهبية مقرمشة.'
+    ],
+    notes: 'تبريد عجين الأرز قبل التشكيل يمنع تشقق الكبة أثناء القلي.'
+  }
+];
+
+const CATEGORIES = [
+  { name: 'أطباق عراقية', icon: '🍲', color: '#8D4024', img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=300&q=80' },
+  { name: 'أسماك', icon: '🐟', color: '#1E6F9F', img: 'https://images.unsplash.com/photo-1547496502-affa22d38842?auto=format&fit=crop&w=300&q=80' },
+  { name: 'دجاج ولحم', icon: '🍗', color: '#C0392B', img: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=300&q=80' },
+  { name: 'حلويات', icon: '🧁', color: '#D35400', img: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=300&q=80' },
+  { name: 'صحي', icon: '🥗', color: '#27AE60', img: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80' },
+  { name: 'شوربات', icon: '🥣', color: '#D4AC0D', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80' },
+  { name: 'مقبلات', icon: '🧆', color: '#7D3C98', img: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=300&q=80' },
+  { name: 'مخبوزات', icon: '🥖', color: '#B9770E', img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80' },
+  { name: 'أطباق سريعة', icon: '🍔', color: '#E74C3C', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80' }
+];
+
+function $(id) {
+  return document.getElementById(id);
+}
+
+function showToast(text) {
+  const t = $('toast');
+  t.textContent = text;
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 2200);
+}
+
+function switchTab(tab) {
+  STATE.currentTab = tab;
+  STATE.recipeDetailId = null;
+  renderApp();
+  window.scrollTo(0, 0);
+}
+
+function openRecipeDetail(id) {
+  STATE.recipeDetailId = id;
+  STATE.activeDetailTab = 'ingredients';
+  renderApp();
+  window.scrollTo(0, 0);
+}
+
+function toggleFavorite(e, id) {
+  if (e) e.stopPropagation();
+  if (STATE.favorites.includes(id)) {
+    STATE.favorites = STATE.favorites.filter(x => x !== id);
+    showToast('تمت الإزالة من المفضلة');
+  } else {
+    STATE.favorites.push(id);
+    showToast('تمت الإضافة إلى المفضلة ❤️');
+  }
+  renderApp();
+}
+
+function toggleIngredient(idx) {
+  STATE.shoppingChecked[idx] = !STATE.shoppingChecked[idx];
+  renderApp();
+}
+
+function sendChefMessage() {
+  const input = $('chefInput');
+  const val = input.value.trim();
+  if (!val) return;
+  
+  STATE.chatMessages.push({ type: 'user', text: val });
+  input.value = '';
+  renderApp();
+
+  window.scrollTo(0, document.body.scrollHeight);
+
+  setTimeout(() => {
+    STATE.chatMessages.push({
+      type: 'bot',
+      text: 'تدلل! اقترح عليك تطبخ ' + RECIPES[0].name + '، أكلة راقية وسهلة ومضبوطة بالخطوات!',
+      cards: [
+        { name: RECIPES[0].name, img: RECIPES[0].heroImg, id: 0 },
+        { name: RECIPES[1].name, img: RECIPES[1].heroImg, id: 1 }
+      ]
+    });
+    renderApp();
+    window.scrollTo(0, document.body.scrollHeight);
+  }, 700);
+}
+
+function renderHomeScreen() {
+  return `
+    <header class="home-header">
+      <div class="brand-badge">
+        <div class="brand-icon">👨‍🍳</div>
+        <h1 class="brand-name">شيف البيت</h1>
+      </div>
+      <div class="brand-sub">دليلك للطبخ العراقي والشرقي</div>
+    </header>
+
+    <div class="search-bar-wrap" onclick="switchTab('search')">
+      <input type="text" class="search-input" placeholder="إبحث عن وصفة أو مكون..." readonly>
+      <span class="search-input-icon">🔍</span>
+    </div>
+
+    <div class="categories-row">
+      ${CATEGORIES.slice(0, 5).map(cat => `
+        <div class="cat-item" onclick="openCategory('${cat.name}')">
+          <div class="cat-icon-box" style="background: ${cat.color};">
+            ${cat.icon}
+          </div>
+          <span class="cat-label">${cat.name}</span>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="hero-banner" onclick="openRecipeDetail(1)">
+      <div class="hero-content">
+        <h2 class="hero-tagline">دولمة عراقية</h2>
+        <div class="hero-desc">أصالة الطعم العراقي</div>
+        <button class="btn-hero-action" onclick="openRecipeDetail(1)">
+          <span>عرض الوصفة</span>
+          <span>‹</span>
+        </button>
+      </div>
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80" alt="دولمة">
+      </div>
+      <div class="hero-dots">
+        <span class="hero-dot active"></span>
+        <span class="hero-dot"></span>
+        <span class="hero-dot"></span>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div class="section-title">وصفات مميزة 🔥</div>
+      <span class="section-link" onclick="switchTab('search')">عرض الكل</span>
+    </div>
+
+    <div class="recipes-horizontal">
+      ${RECIPES.map(r => `
+        <div class="card-recipe" onclick="openRecipeDetail(${r.id})">
+          <img class="card-recipe-img" src="${r.heroImg}" alt="${r.name}">
+          <div class="card-recipe-body">
+            <div class="card-recipe-name">${r.name}</div>
+            <div class="card-recipe-meta">
+              <span class="card-recipe-rating">★ ${r.rating}</span>
+              <span>⏱ ${r.cookTime}</span>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderRecipeDetailScreen(recipe) {
+  const isLiked = STATE.favorites.includes(recipe.id);
+  return `
+    <div class="detail-top-bar">
+      <button class="detail-icon-btn" onclick="switchTab('home')">✕</button>
+      <div style="display:flex; gap:8px;">
+        <button class="detail-icon-btn ${isLiked ? 'liked' : ''}" onclick="toggleFavorite(event, ${recipe.id})">
+          ${isLiked ? '♥' : '♡'}
+        </button>
+        <button class="detail-icon-btn" onclick="showToast('تم نسخ رابط الوصفة للمشاركة!')">↗</button>
+      </div>
+    </div>
+
+    <div class="detail-hero-box">
+      <img class="detail-hero-img" src="${recipe.heroImg}" alt="${recipe.name}">
+      <div class="detail-hero-gradient"></div>
+    </div>
+
+    <div class="detail-main">
+      <div class="detail-title-row">
+        <h1 class="detail-title">${recipe.name}</h1>
+        <div class="detail-rating-pill">
+          <span>★</span>
+          <span>${recipe.rating}</span>
+          <span style="color:var(--text-dim); font-size:0.75rem;">(${recipe.reviews})</span>
+        </div>
+      </div>
+
+      <div class="detail-stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-label">عدد الأشخاص</div>
+          <div class="stat-val">${recipe.servings}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🍳</div>
+          <div class="stat-label">مدة الطهي</div>
+          <div class="stat-val">${recipe.cookTime}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏱</div>
+          <div class="stat-label">مدة التحضير</div>
+          <div class="stat-val">${recipe.prepTime}</div>
+        </div>
+      </div>
+
+      <div class="pills-tab-wrap">
+        <button class="pill-btn ${STATE.activeDetailTab === 'ingredients' ? 'active' : ''}" onclick="setDetailTab('ingredients')">المكونات</button>
+        <button class="pill-btn ${STATE.activeDetailTab === 'steps' ? 'active' : ''}" onclick="setDetailTab('steps')">طريقة التحضير</button>
+        <button class="pill-btn ${STATE.activeDetailTab === 'notes' ? 'active' : ''}" onclick="setDetailTab('notes')">ملاحظات</button>
+      </div>
+
+      ${STATE.activeDetailTab === 'ingredients' ? `
+        <div class="ing-list-wrap">
+          ${recipe.ingredients.map((ing, idx) => `
+            <div class="ing-item-card">
+              <div class="ing-item-left">
+                <div class="custom-checkbox ${STATE.shoppingChecked[idx] ? 'checked' : ''}" onclick="toggleIngredient(${idx})"></div>
+                <div>
+                  <div class="ing-name ${STATE.shoppingChecked[idx] ? 'crossed' : ''}">${ing.name}</div>
+                  <div style="font-size:0.8rem; color:var(--text-muted);">${ing.qty}</div>
+                </div>
+              </div>
+              <div class="ing-icon-img">${ing.icon}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      ${STATE.activeDetailTab === 'steps' ? `
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:30px;">
+          ${recipe.steps.map((st, i) => `
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:14px; display:flex; gap:12px;">
+              <span style="font-size:1.3rem; font-weight:800; color:var(--primary); line-height:1;">${i+1}</span>
+              <p style="font-size:0.92rem; line-height:1.6;">${st}</p>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      ${STATE.activeDetailTab === 'notes' ? `
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:16px; margin-bottom:30px;">
+          <h4 style="color:var(--primary); margin-bottom:6px;">💡 سر نجاح الطبخة</h4>
+          <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.7;">${recipe.notes}</p>
+        </div>
+      ` : ''}
+    </div>
+
+    <div class="sticky-bottom-action">
+      <button class="btn-primary-block" onclick="startCookingMode(${recipe.id})">
+        <span>👨‍🍳</span>
+        <span>ابدأ الطهي خطوة بخطوة</span>
+      </button>
+    </div>
+  `;
+}
+
+function renderAssistantScreen() {
+  return `
+    <header class="assistant-header">
+      <div class="chef-avatar-wrap">👨‍🍳</div>
+      <h2 class="assistant-title">مساعد شيف البيت</h2>
+      <p class="assistant-desc">اسأل عن أي وصفة أو مكون أو نصيحة طبخ بالذكاء الاصطناعي</p>
+    </header>
+
+    <div class="chat-box" id="chatBox">
+      ${STATE.chatMessages.map(msg => `
+        <div class="chat-msg ${msg.type}">
+          <div class="chat-bubble">
+            ${msg.text.replace(/\n/g, '<br>')}
+            ${msg.cards ? `
+              <div class="suggest-cards-list">
+                ${msg.cards.map(c => `
+                  <div class="suggest-card-item" onclick="openRecipeDetail(${c.id})">
+                    <div class="suggest-card-left">
+                      <img class="suggest-card-thumb" src="${c.img}" alt="${c.name}">
+                      <span style="font-size:0.86rem; font-weight:600;">${c.name}</span>
+                    </div>
+                    <span style="color:var(--primary); font-size:1.1rem;">‹</span>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="chat-input-bar">
+      <button class="chat-clip-btn" onclick="showToast('يمكنك التقاط صورة لمكونات ثلاجتك!')">📎</button>
+      <input type="text" class="chat-input-field" id="chefInput" placeholder="اكتب سؤالك هنا..." onkeydown="if(event.key==='Enter')sendChefMessage()">
+      <button class="chat-action-btn" onclick="sendChefMessage()">➤</button>
+    </div>
+  `;
+}
+
+function renderSearchScreen() {
+  return `
+    <header style="padding:16px 18px 4px;">
+      <h1 style="font-size:1.45rem; font-weight:800; text-align:center;">البحث</h1>
+    </header>
+
+    <div class="search-bar-wrap">
+      <input type="text" class="search-input" id="searchMain" placeholder="ابحث عن وصفة أو مكون أو نوع أكل..." oninput="handleSearch(this.value)">
+      <span class="search-input-icon">🔍</span>
+    </div>
+
+    <div class="section-header" style="margin-top:20px;">
+      <div class="section-title">التصنيفات</div>
+      <span class="section-link">عرض الكل</span>
+    </div>
+
+    <div class="categories-grid">
+      ${CATEGORIES.map(cat => `
+        <div class="cat-card-grid" onclick="openCategory('${cat.name}')">
+          <img src="${cat.img}" alt="${cat.name}">
+          <span>${cat.name}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderFavoritesScreen() {
+  const favList = RECIPES.filter(r => STATE.favorites.includes(r.id));
+  return `
+    <header style="padding:16px 18px 4px;">
+      <h1 style="font-size:1.45rem; font-weight:800; text-align:center;">المفضلة</h1>
+    </header>
+
+    <div class="pills-tab-wrap" style="margin:14px 16px;">
+      <button class="pill-btn active">الوصفات</button>
+      <button class="pill-btn" onclick="switchTab('shopping')">قوائم التسوق</button>
+    </div>
+
+    <div style="margin-top:10px;">
+      ${favList.length ? favList.map(r => `
+        <div class="fav-item-card" onclick="openRecipeDetail(${r.id})">
+          <img class="fav-thumb" src="${r.heroImg}" alt="${r.name}">
+          <div class="fav-details">
+            <div class="fav-name">${r.name}</div>
+            <div class="fav-meta">
+              <span style="color:var(--star-gold); font-weight:700;">★ ${r.rating}</span>
+              <span>⏱ ${r.cookTime}</span>
+            </div>
+          </div>
+          <div class="fav-action-heart" onclick="toggleFavorite(event, ${r.id})">♥</div>
+        </div>
+      `).join('') : `
+        <div style="text-align:center; padding:50px 20px; color:var(--text-muted);">
+          <div style="font-size:2.8rem; margin-bottom:10px;">♡</div>
+          <div>لا توجد أكلات محفوظة في المفضلة بعد</div>
+        </div>
+      `}
+    </div>
+  `;
+}
+
+function renderShoppingScreen() {
+  const mainRecipe = RECIPES[0];
+  return `
+    <header style="padding:16px 18px 4px;">
+      <h1 style="font-size:1.45rem; font-weight:800; text-align:center;">قائمة التسوق</h1>
+    </header>
+
+    <div class="pills-tab-wrap" style="margin:14px 16px;">
+      <button class="pill-btn active">حسب الوصفات</button>
+      <button class="pill-btn" onclick="showToast('قائمة مخصصة قريباً!')">قائمة مخصصة</button>
+    </div>
+
+    <div class="shop-recipe-box">
+      <div class="shop-recipe-bar">
+        <div class="shop-recipe-bar-left">
+          <img src="${mainRecipe.heroImg}" alt="${mainRecipe.name}">
+          <span>${mainRecipe.name}</span>
+        </div>
+        <span class="shop-recipe-remove" onclick="showToast('تم إزالة الوصفة')">✕</span>
+      </div>
+
+      <div class="shop-items-container">
+        ${mainRecipe.ingredients.map((ing, idx) => `
+          <div class="shop-item-row">
+            <div class="shop-item-row-left">
+              <div class="custom-checkbox ${STATE.shoppingChecked[idx] ? 'checked' : ''}" onclick="toggleIngredient(${idx})"></div>
+              <div style="font-size:0.95rem; font-weight:600;" class="${STATE.shoppingChecked[idx] ? 'crossed' : ''}">${ing.name}</div>
+            </div>
+            <div class="shop-item-row-right">
+              <span>${ing.qty}</span>
+              <span style="font-size:1.1rem; cursor:pointer;">≡</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="sticky-bottom-action">
+      <button class="btn-outline-block" onclick="showToast('تم حفظ القائمة بنجاح 💾')">
+        <span>📑</span>
+        <span>حفظ القائمة</span>
+      </button>
+      <button class="btn-primary-block" onclick="shareShoppingList()">
+        <span>↗</span>
+        <span>مشاركة القائمة</span>
+      </button>
+    </div>
+  `;
+}
+
+function setDetailTab(tab) {
+  STATE.activeDetailTab = tab;
+  renderApp();
+}
+
+function openCategory(catName) {
+  STATE.activeCategory = catName;
+  showToast('عرض تصنيف: ' + catName);
+  switchTab('search');
+}
+
+function handleSearch(query) {}
+
+function shareShoppingList() {
+  const items = RECIPES[0].ingredients.map(i => '- ' + i.name + ': ' + i.qty).join('\n');
+  const text = '🛒 قائمة تسوق شيف البيت لطبخة (' + RECIPES[0].name + '):\n' + items;
+  if (navigator.share) {
+    navigator.share({ title: 'قائمة تسوق شيف البيت', text: text });
+  } else {
+    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+  }
+}
+
+function startCookingMode(id) {
+  showToast('جاري بدء وضع الطهي خطوة بخطوة 👨‍🍳');
+  STATE.activeDetailTab = 'steps';
+  renderApp();
+}
+
+function renderApp() {
+  const main = $('appContent');
+
+  if (STATE.recipeDetailId !== null) {
+    const r = RECIPES.find(x => x.id === STATE.recipeDetailId) || RECIPES[0];
+    main.innerHTML = renderRecipeDetailScreen(r);
+  } else {
+    switch (STATE.currentTab) {
+      case 'home':
+        main.innerHTML = renderHomeScreen();
+        break;
+      case 'assistant':
+        main.innerHTML = renderAssistantScreen();
+        break;
+      case 'search':
+        main.innerHTML = renderSearchScreen();
+        break;
+      case 'favorites':
+        main.innerHTML = renderFavoritesScreen();
+        break;
+      case 'shopping':
+        main.innerHTML = renderShoppingScreen();
+        break;
+    }
+  }
+
+  const tabs = document.querySelectorAll('.nav-tab-item');
+  const tabNames = ['home', 'search', 'assistant', 'favorites', 'shopping'];
+  tabs.forEach((btn, i) => {
+    if (tabNames[i] === STATE.currentTab && STATE.recipeDetailId === null) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+renderApp();
+</script>
+</body>
+</html>
